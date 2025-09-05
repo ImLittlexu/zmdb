@@ -22,4 +22,6 @@ ENV API_ENDPOINT=${API_ENDPOINT}
 
 COPY --from=build /app/frontend/build /usr/share/nginx/html
 
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+
 CMD ["sh", "-c", "sed -i \"s/localhost:10888/$API_ENDPOINT/g\" /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"]
